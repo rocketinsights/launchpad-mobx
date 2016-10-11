@@ -23,5 +23,8 @@ module.exports = {
       loaders: ['babel'],
       include: path.join(__dirname, 'src'),
     }]
+  },
+  devServer: {
+    host: '0.0.0.0'
   }
 }
