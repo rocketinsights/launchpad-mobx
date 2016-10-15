@@ -1,5 +1,4 @@
 const path = require('path')
-const webpack = require('webpack')
 
 // Webpack: The Confusing Parts
 // https://medium.com/@rajaraodv/webpack-the-confusing-parts-58712f8fcad9
@@ -7,12 +6,13 @@ const webpack = require('webpack')
 module.exports = {
   devtool: 'eval',
   entry: [
-    './src/index',
+    'react-hot-loader/patch',
+    './src/index'
   ],
   output: {
     path: path.join(__dirname, 'www'),
     filename: 'bundle.js',
-    publicPath: '/',
+    publicPath: '/'
   },
   resolve: {
     extensions: ['', '.js']
@@ -21,7 +21,7 @@ module.exports = {
     loaders: [{
       test: /\.js?$/,
       loaders: ['babel'],
-      include: path.join(__dirname, 'src'),
+      include: path.join(__dirname, 'src')
     }]
   },
   devServer: {

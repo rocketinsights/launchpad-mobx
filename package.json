@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "start": "webpack-dev-server --content-base=www --hot --inline --watch",
-    "test": "echo write some tests!!!!"
+    "test": "standard --verbose | snazzy",
+    "dev": "docker run -it --rm -p 8080:8080 -v ~/dev/launchpad-mobx:/code launchpad-mobx npm start"
   },
   "author": "Brandon Aaskov",
   "dependencies": {
@@ -25,7 +26,12 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-hot-loader": "^3.0.0-beta.5",
+    "snazzy": "^5.0.0",
+    "standard": "^8.4.0",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.1"
+  },
+  "standard": {
+    "parser": "babel-eslint"
   }
 }

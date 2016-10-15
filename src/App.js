@@ -4,7 +4,7 @@ import DevTools from 'mobx-react-devtools'
 
 @observer
 class App extends Component {
-  render() {
+  render () {
     return (
       <div>
         <button onClick={this.onReset}>
@@ -16,7 +16,7 @@ class App extends Component {
     )
   }
 
-  onReset = () => {
+  onReset () {
     this.props.appState.resetTimer()
   }
 }
