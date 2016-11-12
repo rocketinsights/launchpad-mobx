@@ -1,25 +1,18 @@
 version: '2'
 services:
   web:
-    build: .
+    build:
+      context: .
+    image: launchpad-mobx
+    volumes:
+      - .:/code
+  proxy:
+    restart: always
+    image: nginx
+    volumes:
+      - ./www:/usr/share/nginx/html
+    links:
+      - web
     ports:
-     - "8080:8080"
-    volumes:
-     - .:/code
-    networks:
-      - front-tier
-      - back-tier
-  redis:
-    image: redis
-    volumes:
-      - redis-data:/var/lib/redis
-    networks:
-      - back-tier
-volumes:
-  redis-data:
-    driver: local
-networks:
-  front-tier:
-    driver: bridge
-  back-tier:
-    driver: bridge
+      - "80:80"
+      - "443:443"

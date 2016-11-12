@@ -1,14 +1,18 @@
+import _ from 'lodash'
 import React from 'react'
 import { render } from 'react-dom'
-import AppState from './AppState'
-import App from './App'
+import App from './components/App'
+import { Router, hashHistory } from 'react-router'
 
-const appState = new AppState()
+import './styles/index.scss'
+
+const routes = {
+  path: '/',
+  component: App
+}
 
 render(
-  <div>
-    <App appState={appState} />
-  </div>,
+  <Router history={hashHistory} routes={routes} />,
   document.getElementById('root')
 )
 
