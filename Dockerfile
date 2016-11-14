@@ -1,13 +1,18 @@
 FROM node:6.7.0
 
-WORKDIR /app/
+WORKDIR /code
+ENV NODE_ENV=production
 
-COPY npm-shrinkwrap.json .
+COPY package.json .
+COPY yarn.lock .
 
-RUN npm install 
+RUN npm install -g yarn
+RUN yarn global add webpack
+RUN yarn install
+
+# fixes bindings for linux
+RUN yarn add node-sass --force 
 
 COPY . .
 
-EXPOSE 8000
-
-CMD ["npm", "start"]
+CMD ["yarn", "build"]

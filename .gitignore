@@ -1,6 +1,13 @@
+# dotfiles
 .DS_Store
-
 .env
+
+# ignore files/folders
 node_modules
-www/bundle.js
+www/*.js
+www/*.map
+
+# logs
 npm-debug.log
+yarn-error.log
+/coverage
