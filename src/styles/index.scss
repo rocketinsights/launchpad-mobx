@@ -9,3 +9,17 @@ body {
 .app {
   max-width: 1224px;
 }
+
+.users {
+  background-color: lightseagreen;
+  padding: 2rem;
+
+  .user {
+    cursor: pointer;
+  }
+}
+
+.workspace {
+  background-color: lightslategray;
+  padding: 2rem;
+}
