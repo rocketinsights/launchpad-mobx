@@ -25,7 +25,6 @@ if (!isDevelopment) {
 
 const entry = {}
 entry[pkg.name] = './src/index'
-console.log('package name', pkg.name)
 
 // this default is production
 const production = {

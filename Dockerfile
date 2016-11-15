@@ -4,15 +4,10 @@ WORKDIR /code
 ENV NODE_ENV=production
 
 COPY package.json .
-COPY yarn.lock .
 
-RUN npm install -g yarn
-RUN yarn global add webpack
-RUN yarn install
-
-# fixes bindings for linux
-RUN yarn add node-sass --force 
+RUN npm install -g webpack
+RUN npm install --ignore-optional  
 
 COPY . .
 
-CMD ["yarn", "build"]
+CMD ["npm", "build"]
