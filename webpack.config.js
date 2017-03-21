@@ -1,11 +1,9 @@
 const _ = require('lodash')
 const path = require('path')
 const webpack = require('webpack')
-const pkg = require('./package.json')
 
 // Webpack: The Confusing Parts
 // https://medium.com/@rajaraodv/webpack-the-confusing-parts-58712f8fcad9
-
 const isDevelopment = process.env.NODE_ENV === 'development'
 
 const plugins = [
@@ -23,17 +21,16 @@ if (!isDevelopment) {
   plugins.push(new webpack.optimize.UglifyJsPlugin())
 }
 
-const entry = {}
-entry[pkg.name] = './src/index'
-
 // this default is production
 const production = {
   devtool: 'source-map',
-  entry,
+  entry: {
+    'launchpad-mobx': './src/index'
+  },
   output: {
     path: path.join(__dirname, 'www'),
     filename: '[name].js',
-    publicPath: '/'
+    publicPath: 'http://localhost:8080/'
   },
   resolve: {
     extensions: ['', '.js']
@@ -46,7 +43,7 @@ const production = {
         include: path.join(__dirname, 'src')
       },
       {
-        test: /\.scss$/,
+        test: /\.s[ac]ss$/,
         loaders: [
           'style-loader',
           'css-loader?sourceMap&importLoaders=1',
@@ -58,11 +55,12 @@ const production = {
         ]
       },
       {
-        test: /\.png$/,
-        loader: 'url-loader?limit=1'
+        test: /\.(png|jpg|gif|svg)$/,
+        loader: 'url-loader?limit=100000'
       }
     ]
   },
+  plugins,
   postcss: function () {
     const autoPrefixerOptions = {
       browsers: ['last 2 versions']
@@ -84,11 +82,14 @@ if (isDevelopment) {
       './src/index'
     ],
     devServer: {
-      host: '0.0.0.0'
+      host: '0.0.0.0',
+      port: '8080', // 8080 is default
+      historyApiFallback: true
     }
   })
 
-  _.set(config, 'output.filename', `${pkg.name}.js`)
+  // despite webpack-dev-server not actually outputting a file, without this, webpack will throw a misguided error about loaders
+  _.set(config, 'output.filename', 'launchpad-mobx.js')
 }
 
 module.exports = config
