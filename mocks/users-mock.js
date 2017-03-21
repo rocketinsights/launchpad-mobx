@@ -6,7 +6,7 @@ const users = [
   },
   {
     id: '2kf0f0392jd018ds',
-    name: 'Franklin Clinto',
+    name: 'Franklin Clinton',
     role: 'admin'
   },
   {

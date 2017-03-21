@@ -1,5 +1,6 @@
-import { observable, action, computed } from 'mobx'
 import _ from 'lodash'
+import { observable, action, computed } from 'mobx'
+import axios from 'axios'
 import mockUsers from '../../mocks/users-mock'
 
 export default class UsersStore {
@@ -10,17 +11,10 @@ export default class UsersStore {
     name: ''
   }
 
-  static validRoles = ['free', 'premium', 'admin'] 
+  static validRoles = ['free', 'premium', 'admin']
 
   constructor (users, defaultUserId) {
-    if (_.isEmpty(users)) {
-      // TODO this setTimeout is just a stub for now since this API call will be async
-      setTimeout(function mockAsyncCall () {
-        this.replaceUsers(mockUsers, defaultUserId)
-      }.bind(this), 200)
-    } else {
-      this.replaceUsers(mockUsers, defaultUserId)
-    }
+    if (!_.isEmpty(users)) this.replaceUsers(mockUsers, defaultUserId)
   }
 
   @computed get roles () {
@@ -34,6 +28,20 @@ export default class UsersStore {
 
   @computed get activeUserIndex () {
     return _.findIndex(this.users, (user) => user.id === this.active.id)
+  }
+
+  @action fetchUsers () {
+    // TODO this is a dummy URL to illustrate an async request via axios (promise-based)
+    console.log('using a fake api call')
+    return axios.get('/fake-api-call')
+      .then(function (response) {
+        this.replaceUsers(mockUsers)
+        return this.users
+      })
+      .catch(() => {
+        this.replaceUsers(mockUsers)
+        return this.users
+      })
   }
 
   @action setActiveUser (userId) {

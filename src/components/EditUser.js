@@ -1,9 +1,9 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 
-@observer(['usersStore']) 
-class Workspace extends Component {
+@inject('usersStore')
+@observer class EditUser extends Component {
   onNameChange (event) {
     const { usersStore } = this.props
     const name = event.target.value
@@ -25,24 +25,24 @@ class Workspace extends Component {
     })
 
     return (
-      <p className="control has-addons">
+      <p className='control has-addons'>
         {buttons}
       </p>
     )
   }
 
-  render () { 
-    const { usersStore } = this.props 
-    if (!usersStore.active.id) return null 
-    
+  render () {
+    const { usersStore } = this.props
+    if (!usersStore.active.id) return null
+
     const inputProps = {
-      type: 'text', 
+      type: 'text',
       value: usersStore.active.name,
       onChange: this.onNameChange.bind(this)
-    } 
+    }
 
     return (
-      <div className='workspace-container'>
+      <div className='user__edit'>
         <div className='box'>
           <p className='title is-4'>Change Name</p>
           <input {...inputProps} />
@@ -56,4 +56,4 @@ class Workspace extends Component {
   }
 }
 
-export default Workspace
+export default EditUser
