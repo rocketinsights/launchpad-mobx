@@ -1,33 +1,36 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Router, Route, browserHistory } from 'react-router'
-import { enter } from 'react-router-promises'
+import { browserHistory, Router, Route } from 'react-router'
 import { Provider } from 'mobx-react'
+import { toJS } from 'mobx'
 import App from './components/App'
-import EditUser from './components/EditUser'
-import UsersStore from './stores/UsersStore'
+import NotificationsStore from './stores/NotificationsStore'
+import UIStore from './stores/UIStore'
 
 import './styles/index.scss'
 
-const stores = { usersStore: new UsersStore() }
-
-const fetchUsers = stores.usersStore.fetchUsers()
-const onEnterApp = () => fetchUsers
-const onEnterUser = (nextState) => {
-  fetchUsers.then(() =>
-    stores.usersStore.setActiveUser(nextState.params.userId)
-  )
+const stores = {
+  NotificationsStore: new NotificationsStore(),
+  UIStore: new UIStore()
 }
 
-render(
-  <Provider {...stores}>
-    <Router history={browserHistory}>
-      <Route path='/' component={App} onEnter={enter(onEnterApp)}>
-        <Route path='/user/:userId' component={EditUser} onEnter={onEnterUser} />
-      </Route>
-    </Router>
-  </Provider>,
-  document.getElementById('root')
-)
+global.browserHistory = browserHistory
+global.stores = stores // so helpful for debugging
+global.toJS = toJS // incredibly helpful for debugging
 
-if (module.hot) module.hot.accept()
+const fetchInitial = async (nextState, replaceState, callback) => {
+  callback()
+}
+
+// forces any un-covered routes to the default route
+const catchAllRedirect = () => browserHistory.push('/')
+
+render( 
+  <Provider {...stores}> 
+    <Router history={browserHistory}> 
+      <Route path='/' component={App} onEnter={fetchInitial} />
+      <Route path='*' onEnter={catchAllRedirect} />
+    </Router> 
+  </Provider>, 
+  document.getElementById('root') 
+)

@@ -1,6 +1,7 @@
 # dotfiles
 .DS_Store
 .env
+.git
 
 # ignore files/folders
 node_modules

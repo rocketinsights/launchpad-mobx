@@ -1,13 +1,10 @@
-FROM node:6.7.0
+FROM node:alpine
 
 WORKDIR /code
-ENV NODE_ENV=production
+RUN apk add --update yarn
 
-COPY package.json .
-
-RUN npm install -g webpack
-RUN npm install --ignore-optional  
+COPY package.json yarn.lock ./
+RUN yarn global add webpack
+RUN yarn install
 
 COPY . .
-
-CMD ["npm", "build"]

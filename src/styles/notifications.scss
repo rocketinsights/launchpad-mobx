@@ -1,0 +1,54 @@
+.notifications {
+  position: fixed;
+  top: 165px;
+  right: 0px;
+  width: 394px;
+  z-index: 2;
+
+  .notification {
+    position: relative;
+    background: #3F5365;
+    padding: 10px 35px;
+    margin-bottom: 15px;
+
+    &.error {
+      color: #FF630D;
+    }
+
+    &.info {
+      color: #8CDFD5;
+    }
+
+    &.success {
+      color: #04d32a;
+    }
+
+    &.warn {
+      color: #FF9200;
+    }
+
+    i.icon {
+      text-transform: none;
+      position: absolute;
+      left: 10px;
+      font-size: 25px;
+      font-style: normal;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0 0 0 30px;
+    }
+
+    button {
+      background: none;
+      border: none;
+      color: lightblue;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+  }
+}
