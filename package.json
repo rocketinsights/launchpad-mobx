@@ -1,56 +1,25 @@
 {
   "name": "launchpad-mobx",
-  "version": "1.0.0",
-  "description": "",
-  "main": "src/index.js",
   "scripts": {
-    "start": "NODE_ENV=development webpack-dev-server --content-base=www --hot --inline --watch",
+    "start": "NODE_ENV=development webpack-dev-server --port=3737",
     "test": "standard 'src/**/*.js' --verbose | snazzy && jest --coverage --verbose",
-    "prod": "NODE_ENV=production webpack --production --progress --colors"
+    "build": "webpack -p"
   },
   "dependencies": {
     "axios": "^0.15.3",
-    "babel-core": "^6.24.0",
-    "babel-eslint": "^7.1.1",
-    "babel-jest": "^19.0.0",
-    "babel-loader": "^6.4.0",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-preset-es2015": "^6.24.0",
-    "babel-preset-react": "^6.23.0",
-    "babel-preset-stage-1": "^6.22.0",
-    "bulma": "^0.2.3",
-    "css-loader": "^0.25.0",
     "dotenv": "^4.0.0",
-    "enzyme": "^2.7.1",
-    "eslint": "^3.17.1",
-    "eslint-plugin-react": "^6.10.0",
-    "file-loader": "^0.9.0",
-    "jest": "^19.0.2",
-    "mobx": "^3.1.5",
+    "mobx": "^3.1.16",
     "mobx-react": "^4.1.3",
-    "mobx-react-devtools": "^4.2.11",
-    "node-sass": "^4.5.1",
-    "normalize.css": "^5.0.0",
-    "postcss-loader": "^1.1.0",
+    "mobx-utils": "^2.0.2",
+    "moment": "^2.18.1",
+    "node-sass": "4.5.3",
     "react": "^15.4.2",
-    "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-hot-loader": "^3.0.0-beta.5",
-    "react-router": "^3.0.0",
-    "react-router-promises": "^1.0.4",
-    "react-test-renderer": "^15.4.2",
-    "sass-loader": "^4.0.2",
-    "snazzy": "^6.0.0",
-    "standard": "^9.0.1",
-    "style-loader": "^0.13.1",
-    "url-loader": "^0.5.7",
-    "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.16.2"
+    "react-router": "^3.0.5"
   },
   "standard": {
     "parser": "babel-eslint",
     "globals": [
-      "CustomEvent",
       "afterEach",
       "beforeEach",
       "describe",
@@ -63,8 +32,40 @@
   },
   "jest": {
     "testEnvironment": "jsdom",
+    "roots": [
+      "<rootDir>/src"
+    ],
     "transform": {
       ".*": "<rootDir>/node_modules/babel-jest"
     }
+  },
+  "devDependencies": {
+    "async": "^2.4.1",
+    "autoprefixer": "^7.1.1",
+    "aws-sdk": "^2.74.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "css-loader": "^0.28.4",
+    "enzyme": "^2.9.1",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "file-loader": "^0.11.2",
+    "jest": "^20.0.4",
+    "mime": "^1.3.6",
+    "mobx-react-devtools": "^4.2.11",
+    "postcss-loader": "^2.0.6",
+    "react-addons-test-utils": "^15.6.0",
+    "sass-loader": "^6.0.6",
+    "snazzy": "^7.0.0",
+    "standard": "^10.0.2",
+    "style-loader": "^0.18.2",
+    "url-loader": "^0.5.9",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
   }
 }

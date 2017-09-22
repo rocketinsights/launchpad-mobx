@@ -1,0 +1,40 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.37);
+
+  .box {
+    border-radius: 0;
+    background-color: white;
+    box-shadow: 3px 11px 75px 0px rgba(0,0,0,0.75);
+  }
+
+  .dialog {
+    .title, .subtitle, .buttons {
+      margin: 0;
+      padding: 0;
+    }
+
+    .title {
+      color: lightgray;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: darkgray;
+      font-weight: 400;
+    }
+
+    .buttons {
+      text-align: right;
+      margin-top: 30px;
+
+      .button {
+        margin-left: 10px;
+      }
+    }
+  }
+}
