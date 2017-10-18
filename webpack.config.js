@@ -18,7 +18,11 @@ const plugins = [
   new webpack.DefinePlugin({
     'process.env': _.zipObject(envKeys, envValues)
   }),
-  new ExtractTextPlugin(`${pkg.name}.css`)
+  new ExtractTextPlugin({
+    filename: `${pkg.name}.css`,
+    disable: false,
+    allChunks: true
+  })
 ]
 
 if (!isDevelopment) {
@@ -96,7 +100,7 @@ let config = _.cloneDeep(production)
 
 if (isDevelopment) {
   _.assign(config, {
-    devtool: 'eval',
+    devtool: 'eval-source-map',
     devServer: {
       contentBase: path.join(__dirname, 'www'),
       inline: true,

@@ -1,6 +1,7 @@
 import _ from 'lodash'
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { observer } from 'mobx-react'
+import { PropTypes } from 'prop-types'
 
 @observer
 export default class Dialog extends Component {
